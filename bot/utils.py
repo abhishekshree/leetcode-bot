@@ -1,9 +1,8 @@
 import psycopg2
 import random
-import csv
 from dotenv import load_dotenv
 import urllib.parse as urlparse
-import os 
+import os
 
 load_dotenv()
 dbpath = os.getenv("DATABASE_URL")
@@ -22,14 +21,11 @@ INSERT_TMP_TABLE = "INSERT INTO tmp (title, url) VALUES ('{}', '{}')"
 SELECT_TMP_TABLE = "SELECT * from tmp"
 DELETE_TMP_TABLE_ROWS = "DELETE FROM tmp"
 
+
 def connection():
     con = psycopg2.connect(
-                dbname=dbname,
-                user=user,
-                password=password,
-                host=host,
-                port=port
-                )
+        dbname=dbname, user=user, password=password, host=host, port=port
+    )
 
     cursor = con.cursor()
 
@@ -69,7 +65,7 @@ def get_problems():
         cursor.execute(MARK_DONE_QUERY_STRING.format(idx))
         cursor.execute(QUERY_STRING.format(idx))
     cursor.close()
-    
+
     cursor = con.cursor()
     cursor.execute(DELETE_TMP_TABLE_ROWS)
     for x in problem_list:
@@ -78,7 +74,6 @@ def get_problems():
 
     con.commit()
     con.close()
-    
 
 
 def get_problems_from_db():

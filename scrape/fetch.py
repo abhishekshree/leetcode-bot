@@ -28,12 +28,8 @@ sql_file = open("scrape/schema.sql", "r")
 SCHEMA = sql_file.read()
 
 sql = psycopg2.connect(
-            dbname=dbname,
-            user=user,
-            password=password,
-            host=host,
-            port=port
-            )
+    dbname=dbname, user=user, password=password, host=host, port=port
+)
 c = sql.cursor()
 c.execute(SCHEMA)
 
@@ -44,7 +40,8 @@ for i in res["stat_status_pairs"]:
     url = BASE_URL + slug
     print(idx, name, slug, url)
     c.execute(
-        """INSERT INTO problems VALUES (%s, %s, %s, %s, %s, %s)""", (idx, name, slug, url, False, str(time())),
+        """INSERT INTO problems VALUES (%s, %s, %s, %s, %s, %s)""",
+        (idx, name, slug, url, False, str(time())),
     )
     idx += 1
 
