@@ -18,10 +18,10 @@ async def on_ready():
 
 async def fetcher(ctx):
     print("📙 Fetcher function called!")
-    prob_list = get_problems_from_csv()
+    prob_list = get_problems_from_db()
     res = f""""""
     for i in range(len(prob_list)):
-        res += "{}. {} - {} \n".format(i + 1, prob_list[i][0], prob_list[i][1])
+        res += "{}. {} - {} \n".format(i + 1, prob_list[i][1], prob_list[i][2])
     await ctx.send(res)
 
 
