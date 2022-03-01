@@ -21,7 +21,7 @@ async def fetcher(ctx):
     prob_list = get_problems_from_db()
     res = f""""""
     for i in range(len(prob_list)):
-        res += "{}. {} - {} \n".format(i + 1, prob_list[i][1], prob_list[i][2])
+        res += "{}. {} - <{}> \n".format(i + 1, prob_list[i][1], prob_list[i][2])
     await ctx.send(res)
 
 
